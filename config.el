@@ -22,6 +22,9 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
+;;(setq doom-font (font-spec :family "DroidSansMono Nerd Font Mono" :size 12 :weight 'medium))
+(setq! doom-unicode-font (font-spec :family "Droid Sans Mono For Powerline" :size 11))
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -85,3 +88,16 @@
 (map! :n "O" #'evil-open-above-noinsert)
 
 (after! lsp-ui (setq lsp-ui-doc-show-with-cursor t))
+
+(setq lsp-clients-clangd-args '("-j=3"
+				"--background-index"
+				"--clang-tidy"
+				"--completion-style=detailed"
+				"--header-insertion=never"
+				"--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+;; LLVM IR Syntax Highlighting
+(setq load-path
+    (cons (expand-file-name "~/.llvm_emacs") load-path))
+(require 'llvm-mode)
