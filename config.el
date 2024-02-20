@@ -97,7 +97,39 @@
 				"--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
+;;(after! ccls
+;;  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+;;  (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+
+;;(setq lsp-prefer-flymake nil)
+
 ;; LLVM IR Syntax Highlighting
 (setq load-path
-    (cons (expand-file-name "~/.llvm_emacs") load-path))
+      (cons (expand-file-name "~/.llvm_emacs") load-path))
 (require 'llvm-mode)
+
+(setq load-path
+      (cons (expand-file-name "~/.llvm_emacs") load-path))
+(require 'tablegen-mode)
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+(setq-default tab-width 8)
+
+(map! :leader
+      :desc "Select previous search"
+      "s r" #'vertico-repeat-select)
+
+;; Enable cpptools
+(after! dap-mode
+  (require 'dap-cpptools))
+
+;; Enabling only some features
+(setq dap-auto-configure-features '(sessions locals controls tooltip))
+
+;; Default enable pdf-tools Dark mode
+(add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
+
+(setq highlight-indent-guides-method 'column)
+
+(setq markdown-command "markdown")
