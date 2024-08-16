@@ -114,11 +114,15 @@
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(setq-default tab-width 8)
+(setq-default tab-width 4)
 
 (map! :leader
       :desc "Select previous search"
       "s r" #'vertico-repeat-select)
+
+(map! :leader
+      :desc "LSP Format buffer"
+      "c f" #'lsp-format-buffer)
 
 ;; Enable cpptools
 (after! dap-mode
@@ -133,3 +137,7 @@
 (setq highlight-indent-guides-method 'column)
 
 (setq markdown-command "markdown")
+
+;;Disable corfu's autocomplete with TAB
+;; (map! :n "TAB" nil)
+;; (after! corfu (setq tab-always-indent t))
