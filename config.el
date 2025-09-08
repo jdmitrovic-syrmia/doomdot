@@ -9,6 +9,10 @@
 (setq user-full-name "Jovan Dmitrovic"
       user-mail-address "jdmitrovic@gmail.com")
 
+
+;; Set zsh as shell
+(setq shell-file-name "/usr/bin/zsh")
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -105,11 +109,11 @@
 
 ;; LLVM IR Syntax Highlighting
 (setq load-path
-      (cons (expand-file-name "~/.llvm_emacs") load-path))
+      (cons (expand-file-name "~/source/llvm-project/llvm/utils/emacs") load-path))
 (require 'llvm-mode)
 
 (setq load-path
-      (cons (expand-file-name "~/.llvm_emacs") load-path))
+      (cons (expand-file-name "~/source/llvm-project/llvm/utils/emacs") load-path))
 (require 'tablegen-mode)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -136,8 +140,13 @@
 
 (setq highlight-indent-guides-method 'column)
 
-(setq markdown-command "markdown")
+(setq markdown-command "marked")
+
+(which-function-mode t)
 
 ;;Disable corfu's autocomplete with TAB
 ;; (map! :n "TAB" nil)
 ;; (after! corfu (setq tab-always-indent t))
+
+;; Don't move cursor after going back to normal mode
+(setq evil-move-cursor-back nil)
